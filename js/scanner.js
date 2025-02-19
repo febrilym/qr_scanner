@@ -52,20 +52,9 @@ camera.addEventListener("click", async () => {
     p.innerText = "Scanning QR Code...";
 
     try {
-        const devices = await navigator.mediaDevices.enumerateDevices();
-        const videoDevices = devices.filter(device => device.kind === "videoinput");
-
-        if (videoDevices.length === 0) {
-            console.log("Kamera tidak ditemukan :(");
-            return;
-        }
-
-        let backCamera = videoDevices.find(device => device.label.toLowerCase().includes("back") || device.label.toLowerCase().includes("environment"));
-        
         const constraints = {
             video: {
-                deviceId: backCamera ? { exact: backCamera.deviceId } : undefined,
-                facingMode: backCamera ? "environment" : "user"
+                facingMode: { exact: "environment" }
             }
         };
 
@@ -83,7 +72,14 @@ camera.addEventListener("click", async () => {
         });
 
     } catch (error) {
-        console.error("Gagal mengakses kamera:", error);
+        console.error("Gagal mengakses kamera belakang, coba fallback ke kamera pertama:", error);
+
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            video.srcObject = stream;
+        } catch (err) {
+            console.error("Tidak bisa mengakses kamera sama sekali:", err);
+        }
     }
 });
 
