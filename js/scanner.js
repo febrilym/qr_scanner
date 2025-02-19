@@ -55,7 +55,7 @@ camera.addEventListener("click", () => {
     Instascan.Camera.getCameras()
         .then(cameras => {
             if (cameras.length > 0){
-                scanner.start(cameras[0]).then(() => {
+                scanner.start(cameras[1]).then(() => {
                     form.classList.add('active-video');
                     stopCam.style.display = "inline-block";
                 })
