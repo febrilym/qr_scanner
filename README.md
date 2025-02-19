@@ -41,5 +41,5 @@ This project is licensed under the [Apache License 2.0](LICENSE).
 
 ## 📩 Contact
 For any questions or suggestions, feel free to reach out:
-📧 Email: febriprasetiyo241@gmail.com
-🔗 GitHub: [@febrilym](https://github.com/febrilym/)
+- 📧 Email: febriprasetiyo241@gmail.com
+- 🔗 GitHub: [@febrilym](https://github.com/febrilym/)
