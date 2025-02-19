@@ -34,7 +34,7 @@ function fetchRequest(file){
         let text = result[0].symbol[0].data;
 
         if (!text)
-            return p.innerText = "Couldn't Scan QR Code :("
+            return p.innerText = "Tidak bisa scan QR Code :("
         
         scannerDiv.classList.add("active");
         form.classList.add("active-img");
@@ -60,7 +60,7 @@ camera.addEventListener("click", () => {
                     stopCam.style.display = "inline-block";
                 })
             }else{
-                console.log("Camera not found :(");
+                console.log("Camera tidak ditemukan :(");
             }
         })
         .catch(err => console.error(err))
@@ -73,8 +73,22 @@ camera.addEventListener("click", () => {
 
 copyBtn.addEventListener("click", () => {
     let text = textarea.textContent;
-    navigator.clipboard.writeText(text);
-})
+    navigator.clipboard.writeText(text).then(() => {
+        showNotification("Text telah disalin!");
+    }).catch(err => {
+        console.error("Gagal menyalin :(", err);
+    });
+});
+
+function showNotification(message) {
+    const notification = document.querySelector(".notification");
+    notification.innerText = message;
+    notification.classList.add("show");
+
+    setTimeout(() => {
+        notification.classList.remove("show");
+    }, 2000);
+}
 
 closeBtn.addEventListener("click", () => stopScan());
 stopCam.addEventListener("click", () => stopScan());
