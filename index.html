@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/images/qr_icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/generator.css">
+    <link rel="stylesheet" href="./css/scanner.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>QRay | QR Scanner</title>
+</head>
+<body>
+    <div class="container">
+        <!----------< Navigation >---------->
+        <nav>
+            <button class="nav-generator active">Generator</button>
+            <button class="nav-scanner">Scanner</button>
+        </nav>
+
+        <!----------< Generator >---------->
+        <div class="generator">
+            <h1>QR Code Generator</h1>
+            <p>Masukkan link atau tulis sesuatu untuk membuat Kode QR!</p>
+
+            <div class="generator-form">
+                <input type="text" placeholder="Masukkan link atau teks">
+                <button>Generate Kode QR</button>
+            </div>
+
+            <div class="generator-img">
+                <img src="assets/images/qr.png" alt="qr-code">
+            </div>
+
+            <div class="generator-btn">
+                <button class="btn-link">Download <i class="fa-solid fa-download"></i></button>
+            </div>
+        </div>
+
+        <!----------< Scanner >---------->
+        <div class="scanner" style="display: none;">
+            <h1>
+                Pembaca atau QR Scanner
+                <i class="fa-solid fa-camera"></i>
+                <i class="fa-solid fa-circle-stop"></i>
+            </h1>
+
+            <form class="scanner-form">
+                <input type="file" accept="image/*" hidden>
+                <img src="assets/images/qr.png" alt="qr-code">
+                <video></video>
+
+                <div class="content">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <p>Upload Kode QR untuk melakukan scan</p>
+                </div>
+            </form>
+
+            <div class="scanner-details">
+                <textarea disabled>https://www.youtube.com/live/Y7XXwuMdtoo?si=LTodZ45sJqggb6gE</textarea>
+
+                <div class="btn">
+                    <button class="close">Close</button>
+                    <button class="copy">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="./js/main.js"></script>
+    <script src="./js/generator.js"></script>
+    <script src="./js/scanner.js"></script>
+    <script src="./js/instascan.min.js"></script>
+</body>
+</html>

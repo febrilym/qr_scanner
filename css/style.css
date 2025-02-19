@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(43, 151, 38)
+}
+
+.container{
+    width: 100%;
+    max-width: 410px;
+    background: #fff;
+    border-radius: 7px;
+    padding: 15px 25px;
+    overflow: hidden;
+    box-shadow: 0 0 10px #fff;
+}
+
+button{
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+nav button{
+    width: calc(100% / 2 - 5px);
+    font-size: 1.2rem;
+    text-align: center;
+    height: 45px;
+    letter-spacing: 2px;
+    border-bottom: 2px solid #ccc;
+    opacity: 0.5;
+}
+
+nav button.active{
+    border-bottom: 2px solid #35bf23;
+    font-weight: 700;
+    color: #35bf23;
+    opacity: 1;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+
+/* @media screen and (max-width: 1200px){
+    html {
+        font-size: 90%;
+    }
+}
+
+@media screen and (max-width: 992px){
+    .container {
+        max-width: 380px;
+        padding: 12px 20px;
+    }
+}
+
+@media screen and (max-width: 810px){
+    nav button {
+        width: 100%;
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 768px){
+    body {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .container {
+        max-width: 400px;
+    }
+
+    nav button {
+        width: 100%;
+        height: 40px;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .container {
+        max-width: 400px;
+        padding: 10px 18px;
+    }
+}
+
+@media screen and (max-width: 450px){
+    html {
+        font-size: 90%;
+    }
+
+    .container {
+        max-width: 390px;
+    }
+
+    nav button {
+        font-size: 1.2rem;
+        height: 38px;
+    }
+} */
+
+@media screen and (max-width: 400px){
+    .container {
+        max-width: 360px;
+        padding: 8px 15px;
+    }
+
+    nav button {
+        font-size: 1.2rem;
+        height: 36px;
+    }
+}
