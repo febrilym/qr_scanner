@@ -51,25 +51,34 @@ camera.addEventListener("click", () => {
     form.classList.add("pointerEvents");
     p.innerText = "Scanning QR Code...";
 
-    scanner = new Instascan.Scanner({video: video});
+    scanner = new Instascan.Scanner({ video: video });
     Instascan.Camera.getCameras()
         .then(cameras => {
-            if (cameras.length > 0){
-                scanner.start(cameras[1]).then(() => {
+            if (cameras.length > 0) {
+                let selectedCamera = cameras[1] || cameras[0]; // Default ke kamera belakang jika ada
+
+                scanner.start(selectedCamera).then(() => {
                     form.classList.add('active-video');
                     stopCam.style.display = "inline-block";
-                })
-            }else{
-                console.log("Camera tidak ditemukan :(");
+
+                    // DETEKSI apakah ini kamera depan atau belakang
+                    if (selectedCamera.name.toLowerCase().includes("front")) {
+                        video.style.transform = "scaleX(-1)"; // Balikkan video jika kamera depan
+                    } else {
+                        video.style.transform = "scaleX(1)"; // Normal jika kamera belakang
+                    }
+                });
+            } else {
+                console.log("Kamera tidak ditemukan :(");
             }
         })
-        .catch(err => console.error(err))
+        .catch(err => console.error(err));
 
     scanner.addListener("scan", c => {
         scannerDiv.classList.add("active");
         textarea.innerText = c;
-    })
-})
+    });
+});
 
 copyBtn.addEventListener("click", () => {
     let text = textarea.textContent;
