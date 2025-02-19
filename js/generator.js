@@ -8,12 +8,11 @@ let imgURL = '';
 
 generateBtn.addEventListener("click", () => {
     let qrValue = qrInput.value;
-    if (!qrValue.trim()) return; // jika nilai kosong maka stop disini
+    if (!qrValue.trim()) return;
 
-    generateBtn.innerText = "Membuat Kode QR...";
+    generateBtn.innerText = "Membuat QR Code...";
 
-    // jika nilai valid maka menggunakan qrserver api untuk membuat kode QR
-    imgURL = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${qrValue}`;
+    imgURL = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(qrValue)}`;
 
     qrImg.src = imgURL;
 
