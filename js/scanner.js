@@ -55,17 +55,16 @@ camera.addEventListener("click", () => {
     Instascan.Camera.getCameras()
         .then(cameras => {
             if (cameras.length > 0) {
-                let selectedCamera = cameras[1] || cameras[0]; // Default ke kamera belakang jika ada
+                let selectedCamera = cameras[1] || cameras[0];
 
                 scanner.start(selectedCamera).then(() => {
                     form.classList.add('active-video');
                     stopCam.style.display = "inline-block";
 
-                    // DETEKSI apakah ini kamera depan atau belakang
                     if (selectedCamera.name.toLowerCase().includes("front")) {
-                        video.style.transform = "scaleX(-1)"; // Balikkan video jika kamera depan
+                        video.style.transform = "scaleX(-1)";
                     } else {
-                        video.style.transform = "scaleX(1)"; // Normal jika kamera belakang
+                        video.style.transform = "scaleX(1)";
                     }
                 });
             } else {
