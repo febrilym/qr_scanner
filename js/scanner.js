@@ -16,6 +16,11 @@ const closeBtn = scannerDiv.querySelector(".scanner-details .close");
 
 form.addEventListener("click", () => fileInput.click());
 
+const cameraSelect = document.createElement("select"); // Dropdown kamera
+cameraSelect.style.display = "block";
+document.body.prepend(cameraSelect); // Tambahkan ke halaman
+
+
 fileInput.addEventListener("change", e => {
     let file = e.target.files[0];
     if (!file) return;
@@ -52,17 +57,47 @@ camera.addEventListener("click", async () => {
     p.innerText = "Scanning QR Code...";
 
     try {
-        const constraints = {
-            video: {
-                facingMode: { exact: "environment" }
-            }
-        };
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        const videoDevices = devices.filter(device => device.kind === "videoinput");
 
+        if (videoDevices.length === 0) {
+            console.log("Kamera tidak ditemukan :(");
+            return;
+        }
+
+        // Tambahkan opsi kamera ke dropdown
+        cameraSelect.innerHTML = "";
+        videoDevices.forEach((device, index) => {
+            let option = document.createElement("option");
+            option.value = device.deviceId;
+            option.text = device.label || `Camera ${index + 1}`;
+            cameraSelect.appendChild(option);
+        });
+
+        // Pilih kamera belakang secara default jika ada
+        let backCamera = videoDevices.find(device => device.label.toLowerCase().includes("back") || device.label.toLowerCase().includes("environment"));
+        let selectedCameraId = backCamera ? backCamera.deviceId : videoDevices[0].deviceId;
+
+        // Akses kamera yang dipilih
+        await startCamera(selectedCameraId);
+
+    } catch (error) {
+        console.error("Gagal mendapatkan daftar kamera:", error);
+    }
+});
+
+// Fungsi untuk memulai kamera
+async function startCamera(deviceId) {
+    try {
+        const constraints = {
+            video: { deviceId: { exact: deviceId } }
+        };
         const stream = await navigator.mediaDevices.getUserMedia(constraints);
         video.srcObject = stream;
         form.classList.add('active-video');
         stopCam.style.display = "inline-block";
 
+        // Gunakan instascan untuk mendeteksi QR dari stream video
         scanner = new Instascan.Scanner({ video: video });
         scanner.start();
 
@@ -72,15 +107,14 @@ camera.addEventListener("click", async () => {
         });
 
     } catch (error) {
-        console.error("Gagal mengakses kamera belakang, coba fallback ke kamera pertama:", error);
-
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-            video.srcObject = stream;
-        } catch (err) {
-            console.error("Tidak bisa mengakses kamera sama sekali:", err);
-        }
+        console.error("Gagal mengakses kamera:", error);
     }
+}
+
+// Ubah kamera berdasarkan pilihan dropdown
+cameraSelect.addEventListener("change", async () => {
+    let selectedCameraId = cameraSelect.value;
+    await startCamera(selectedCameraId);
 });
 
 copyBtn.addEventListener("click", () => {
