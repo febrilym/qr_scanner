@@ -1,7 +1,7 @@
 # QR Code Scanner
 
 ## 📌 Description
-QRay Code Scanner is a web-based application that allows users to scan QR codes easily and quickly using their device's camera. This application is designed to be responsive and can be used on various devices, including desktops, tablets, and smartphones.
+QRay QR Code Scanner is a web-based application that allows users to scan QR codes easily and quickly using their device's camera. This application is designed to be responsive and can be used on various devices, including desktops, tablets, and smartphones.
 
 ## 🚀 Key Features
 - 📝 **QR Code generating** create your own QR code
