@@ -31,7 +31,8 @@ Check the app, link here:
 [🔗 Live Demo](https://qray-scanner.pages.dev/)
 
 ## 🖼️ UI Preview
-Add screenshots of the application to showcase its interface.
+![image1](https://github.com/user-attachments/assets/cac3696f-6b3d-466e-97eb-caa645bd5b1c)
+![image2](https://github.com/user-attachments/assets/4a7bd5d9-c615-4c03-bef7-8791c6c1c1a5)
 
 ## 🤝 Contributions
 Contributions are welcome! If you'd like to add new features or fix bugs, please submit a pull request or open an issue.
